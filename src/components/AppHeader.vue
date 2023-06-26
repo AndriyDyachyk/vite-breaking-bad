@@ -6,7 +6,9 @@ export default {
     },
     data(){
         return{
-            store
+            store,
+            type1PokeValue: '',
+            type2PokeValue: ''
         }
     }
 }
@@ -22,17 +24,23 @@ export default {
                     <div class="green bubble"></div>
                 </div>
             </div>
+            <div class="row">
+                <button v-on:click="$emit('pageDown')">&lt;</button>
+                <p>Pagina:{{store.page}}/{{store.maxPages}}</p>
+                <button v-on:click="$emit('pageUp')">&gt;</button>
+            </div>
             <!--SELECT FILTER-->
             <div id="search">
-                <label for="type1">Cerca per tipo:</label>
-                <select name="type1" id="type1">
-                    <option value="0"></option>
-                    <option :value="index" v-for="(tipo1,index) in store.listaTipo1">{{tipo1}}</option>
+                <label>Cerca per tipo:</label>
+                <select name="type1" v-model="type1PokeValue" v-on:change="$emit('filterType1', type1PokeValue)">
+                    <option selected="selected" value=''></option>
+                    <option :value="tipo1" v-for="(tipo1,index) in store.listaTipo1" :key="index">{{tipo1}}</option>
                 </select>
-                <select name="type2" id="type2">
-                    <option value="0"></option>
-                    <option :value="index" v-for="(tipo2,index) in store.listaTipo2">{{tipo2}}</option>
+                <select name="type2" v-model="type2PokeValue" v-on:change="$emit('filterType2', type2PokeValue)">
+                    <option selected="selected" value=''></option>
+                    <option :value="tipo2" v-for="(tipo2,index) in store.listaTipo2" :key="index">{{tipo2}}</option>
                 </select>
+                <button v-on:click="$emit('searched')">Cerca</button>
             </div>
         </div>
     </div>
@@ -97,6 +105,10 @@ export default {
     #search select{
         width: 100px;
         margin: 0px 10px;
+    }
+
+    .row button{
+        margin: 0px 10px
     }
     
 </style>
