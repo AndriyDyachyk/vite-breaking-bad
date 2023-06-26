@@ -1,18 +1,38 @@
 <script>
+import { store } from '../store.js'
 export default {
     props:{
         title: String
+    },
+    data(){
+        return{
+            store
+        }
     }
 }
 </script>
 <template lang="">
     <div class="container">
         <div class="row">
-            <div class="scanner bubble"></div>
-            <div class="level row">
-                <div class="red bubble"></div>
-                <div class="yellow bubble"></div>
-                <div class="green bubble"></div>
+            <div class="bubble_row">
+                <div class="scanner bubble"></div>
+                <div class="level bubble_row">
+                    <div class="red bubble"></div>
+                    <div class="yellow bubble"></div>
+                    <div class="green bubble"></div>
+                </div>
+            </div>
+            <!--SELECT FILTER-->
+            <div id="search">
+                <label for="type1">Cerca per tipo:</label>
+                <select name="type1" id="type1">
+                    <option value="0"></option>
+                    <option :value="index" v-for="(tipo1,index) in store.listaTipo1">{{tipo1}}</option>
+                </select>
+                <select name="type2" id="type2">
+                    <option value="0"></option>
+                    <option :value="index" v-for="(tipo2,index) in store.listaTipo2">{{tipo2}}</option>
+                </select>
             </div>
         </div>
     </div>
@@ -23,6 +43,11 @@ export default {
         width: 1200px;
     }
     .row{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .bubble_row{
         display: flex;
         flex-direction: row;
         align-self: flex-start;
@@ -67,6 +92,11 @@ export default {
         background: -moz-radial-gradient(circle, rgba(255,255,255,1) 0%, green 56%);
         background: -webkit-radial-gradient(circle, rgba(255,255,255,1) 0%, green 56%);
         background: radial-gradient(circle, rgba(255,255,255,1) 0%, green 56%);
+    }
+
+    #search select{
+        width: 100px;
+        margin: 0px 10px;
     }
     
 </style>

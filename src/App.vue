@@ -15,7 +15,13 @@ export default {
   },
   mounted(){
     axios.get(store.apiUrl).then((response) => {
-        store.pokemonsList = response.data.docs;
+      store.pokemonsList = response.data.docs;
+    }),
+    axios.get(store.apiType1Url).then((response) => {
+      store.listaTipo1 = response.data;
+    }),
+    axios.get(store.apiType2Url).then((response) => {
+      store.listaTipo2 = response.data;
     })
   }
 }

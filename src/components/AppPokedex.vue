@@ -35,6 +35,7 @@ export default {
     }
     .display{
         width: 1200px;
+        height: calc(400px + 20px);
         display: flex;
         flex-wrap: wrap;
         display: flex;
@@ -46,6 +47,8 @@ export default {
         background: linear-gradient(148deg, rgba(101,101,101,1) 10%, rgba(0,0,0,1) 88%);
         padding: 20px;
         border-radius: 20px;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     .white_card{
         background: rgb(255,255,255);
